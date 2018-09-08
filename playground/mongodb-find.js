@@ -9,6 +9,18 @@ MongoClient.connect(
     }
     console.log("Connected to MongoDB server");
 
+    db.collection("Users")
+      .find({ name: "Rohan" })
+      .toArray()
+      .then(
+        docs => {
+          console.log(JSON.stringify(docs, undefined, 2));
+        },
+        err => {
+          console.log("Unable to fetch todos", err);
+        }
+      );
+
     /*db.collection("Todos")
       .find({ _id: new ObjectID("5b9403a3c447b9c4836951d9") })
       .toArray()
@@ -35,17 +47,5 @@ MongoClient.connect(
       );*/
 
     // db.close();
-
-    db.collection("Users")
-      .find({ name: "Rohan" })
-      .toArray()
-      .then(
-        docs => {
-          console.log(JSON.stringify(docs, undefined, 2));
-        },
-        err => {
-          console.log("Unable to fetch todos", err);
-        }
-      );
   }
 );
