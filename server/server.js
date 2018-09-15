@@ -7,6 +7,7 @@ var { Todo } = require("./models/todo");
 var { User } = require("./models/user");
 
 var app = express();
+const port = process.env.PORT || 3000;
 
 app.use(bodyParser.json());
 
@@ -35,7 +36,6 @@ app.get("/todos", (req, res) => {
   );
 });
 
-//GET /todos/1234123
 app.get("/todos/:id", (req, res) => {
   var id = req.params.id;
 
@@ -54,15 +54,10 @@ app.get("/todos/:id", (req, res) => {
     .catch(e => {
       return res.status(400).send();
     });
-  //success
-  //if todo - send it back
-  //if no todo - send back 404 with empty body
-  //error
-  //400 - and send empty body back
 });
 
-app.listen(3000, () => {
-  console.log("Started on port 3000");
+app.listen(port, () => {
+  console.log(`Started up at port ${port}`);
 });
 
 module.exports = { app };
